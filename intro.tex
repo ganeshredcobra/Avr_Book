@@ -1,0 +1,68 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\author{Ganesh Harshan}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\title{Avr Programming in GNU/Linux}
+\begin{document}
+\tableofcontents
+\chapter{Hello World!}
+\newpage
+\begin{flushleft}
+\section{Hello}
+Lets say Hello World to Avr Controllers.In electronics the term "Hello world " refers to blinking an LED using the controller.So lets blink the LED.\\
+Connect the LED \& ICSP connector to the controller as shown below.
+\subsection{Program}
+\begin{lstlisting}
+//Hello.c
+#include <avr/io.h>
+#include <avr/delay.h>
+
+int main()
+{
+	DDRB |= 1<<PINB0;
+	while(1)
+	{
+		PORTB |= 1<<PINB0;
+		_delay_ms(100);
+		PORTB &= ~(1<<PINB0);
+		_delay_ms(100);
+	}
+}
+\end{lstlisting}
+\subsection{Making the Program.}
+Use the general make program.Just rename the target name according to the program name.
+\begin{lstlisting}
+make elf
+make hex
+make flash
+\end{lstlisting}
+\subsection{Explaining the Program.}
+\end{flushleft}
+
+\end{document}
